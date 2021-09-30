@@ -2,25 +2,25 @@ import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import Header from './componentes/Header'
 import Footer from './componentes/Footer'
-import Tasks from './componentes/Tasks'
-import AddTask from './componentes/AddTask'
+import Edificios from './componentes/Edificios'
+import AddOrUpdateEdificio from './componentes/AddOrUpdateEdificio'
 import About from './componentes/About'
 
 const App = () => {
-  const [showAddTask, setShowAddTask] = useState(false)
-  const[tasks, setTasks] = useState([])
-  const[taskUpd, setTaskUpd] = useState(null)
+  const [showAddOrUpdateEdificio, setShowAddOrUpdateEdificio] = useState(false)
+  const[edificios, setEdificios] = useState([])
+  const[edificioUpd, setEdificioUpd] = useState(null)
 
   useEffect(() => {
     const getEdificios = async () =>{
-      const tasksFromServer = await fetchEdificios()
-      setTasks(tasksFromServer)
+      const edificiosFromServer = await fetchEdificios()
+      setEdificios(edificiosFromServer)
     }
 
     getEdificios()
   }, [])
 
-//Fetch tasks
+//Fetch edificios
 const fetchEdificios = async (id) => {
   const res = await fetch('http://localhost:5000/edificios')
   const data = await res.json()
@@ -29,7 +29,7 @@ const fetchEdificios = async (id) => {
 }
 
 //Agregar tarea
-const addTask = async (task) =>{
+const AddEdificio = async (task) =>{
   const res = await fetch('http://localhost:5000/edificios', 
   {method: 'POST', 
   headers: {'Content-type': 'application/json'}, 
@@ -37,38 +37,38 @@ const addTask = async (task) =>{
 
   const data = await res.json()
 
-  setTasks([...tasks, data])
+  setEdificios([...edificios, data])
 }
 
 //Borrar tarea
-const deleteTask = async (id) =>{
+const deleteEdificio = async (id) =>{
   await fetch(`http://localhost:5000/edificios/${id}`, 
   {method: 'DELETE'})
-  setTasks(tasks.filter((task)=> task.id !== id))
+  setEdificios(edificios.filter((task)=> task.id !== id))
 }
 
 
-const updateTask =  async (id, updTask) =>{
+const updateEdificio =  async (id, updTask) =>{
   const res = await fetch(`http://localhost:5000/edificios/${id}`,
   {method: 'PUT',
   headers: {'Content-type' : 'application/json'},
   body: JSON.stringify(updTask)})
 
   const data= await res.json()
-  setTasks(tasks.map((task)=>(task.id !== id) ? task : data))
+  setEdificios(edificios.map((task)=>(task.id !== id) ? task : data))
 }
 
   return (
     <Router>
     <div className="container">
-      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
+      <Header onAdd={() => setShowAddOrUpdateEdificio(!showAddOrUpdateEdificio)} showAdd={showAddOrUpdateEdificio} />
      
       <Route path= '/' exact 
       render={(props) =>(
         <>           
-        {showAddTask && <AddTask onAdd={addTask} onUpdate={updateTask} afterAdd={()=>setShowAddTask(false)} taskUpd ={taskUpd} setTaskUpd={setTaskUpd}/>}
+        {showAddOrUpdateEdificio && <AddOrUpdateEdificio onAdd={AddEdificio} onUpdate={updateEdificio} afterAdd={()=>setShowAddOrUpdateEdificio(false)} edificioUpd ={edificioUpd} setEdificioUpd={setEdificioUpd}/>}
         
-        {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onOpenUpdate ={()=>setShowAddTask(true)} taskUpd = {setTaskUpd}/>  : 'No hay edificios a mostrar'}
+        {edificios.length > 0 ? <Edificios edificios={edificios} onDelete={deleteEdificio} onOpenUpdate ={()=>setShowAddOrUpdateEdificio(true)} edificioUpd = {setEdificioUpd}/>  : 'No hay edificios a mostrar'}
         </>
       )} />
       <Route path= '/About' component={About}/>

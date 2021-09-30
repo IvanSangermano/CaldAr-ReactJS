@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { useEffect } from 'react/cjs/react.development'
 
-const AddTask = ({onAdd, onUpdate, afterAdd, taskUpd, setTaskUpd}) => {
+const AddTask = ({onAdd, onUpdate, afterAdd, edificioUpd, setEdificioUpd}) => {
  
         const [direccion, setDireccion] = useState('')
         const [ciudad, setCiudad] = useState('')
@@ -11,18 +11,18 @@ const AddTask = ({onAdd, onUpdate, afterAdd, taskUpd, setTaskUpd}) => {
         const [constructoraID, setConstructoraID] = useState('')
     
         useEffect(()=>{
-            if(taskUpd){
-                setDireccion(taskUpd.direccion)
-                setCiudad(taskUpd.ciudad)
-                setNombre(taskUpd.nombre)
-                setCodigoPostal(taskUpd.codigoPostal)
-                setEsParticular(taskUpd.esParticular)
-                setConstructoraID(taskUpd.constructoraID)
+            if(edificioUpd){
+                setDireccion(edificioUpd.direccion)
+                setCiudad(edificioUpd.ciudad)
+                setNombre(edificioUpd.nombre)
+                setCodigoPostal(edificioUpd.codigoPostal)
+                setEsParticular(edificioUpd.esParticular)
+                setConstructoraID(edificioUpd.constructoraID)
             }
             return () => {
-                setTaskUpd(null)
+                setEdificioUpd(null)
             }
-        }, [taskUpd])
+        }, [edificioUpd])
     
     
 const onSubmit = (e) =>{
@@ -32,8 +32,8 @@ const onSubmit = (e) =>{
         alert('Por favor, Ingrese correctamente los datos del edificio')
         return
     }
-    if(taskUpd){
-        onUpdate(taskUpd.id, {direccion, ciudad, nombre, codigoPostal, esParticular, constructoraID})
+    if(edificioUpd){
+        onUpdate(edificioUpd.id, {direccion, ciudad, nombre, codigoPostal, esParticular, constructoraID})
     }else{
         onAdd({direccion, ciudad, nombre, codigoPostal, esParticular, constructoraID})
     }

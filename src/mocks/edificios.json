@@ -10,13 +10,12 @@
       "constructoraId": 3
     },
     {
-      "id": 4,
       "direccion": "9425 Warrior Pass",
       "ciudad": "Heydərabad",
       "nombre": "Corkbark Fir",
-      "codigoPostal": "6",
+      "codigoPostal": "2",
       "esParticular": true,
-      "constructoraId": 4
+      "id": 4
     },
     {
       "id": 5,
