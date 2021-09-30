@@ -1,0 +1,40 @@
+{
+  "edificios": [
+    {
+      "id": 3,
+      "direccion": "5637 Eagle Crest Point",
+      "ciudad": "Neklyudovo",
+      "nombre": "Mississippi Buttercup",
+      "codigoPostal": "69076",
+      "esParticular": true,
+      "constructoraId": 3
+    },
+    {
+      "id": 4,
+      "direccion": "9425 Warrior Pass",
+      "ciudad": "Heydərabad",
+      "nombre": "Corkbark Fir",
+      "codigoPostal": "6",
+      "esParticular": true,
+      "constructoraId": 4
+    },
+    {
+      "id": 5,
+      "direccion": "680 Boyd Center",
+      "ciudad": "Chaowai",
+      "nombre": "Kopiko 'ula",
+      "codigoPostal": "355",
+      "esParticular": true,
+      "constructoraId": 5
+    },
+    {
+      "direccion": "5637 Eagle Crest Point",
+      "ciudad": "Neklyudovo",
+      "nombre": "Mississippi Buttercup",
+      "codigoPostal": "2222",
+      "esParticular": false,
+      "constructoraID": "2222",
+      "id": 6
+    }
+  ]
+}
